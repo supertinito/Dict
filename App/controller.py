@@ -2,20 +2,21 @@
 import config as cf
 import model
 import csv
+def initCatalog():
+    """
+    Llama la funcion de inicializacion del catalogo del modelo.
+    """
+    catalog = model.newCatalog()
+    return catalog
 
-def loadCategorias(catalog):
+def loadLetras(catalog):
 
-    a = cf.data_dir + 'a.txt'
+    a = cf.data_dir + 'a.csv'
 
-    input_file = csv.DictReader(open(categoriafile, encoding='utf-8'),delimiter='\t')
-    for categoria in input_file:
-        model.addListaCategorias(catalog, categoria)
+    input_file = csv.DictReader(open(a, encoding='utf-8'),delimiter='\t')
+    for palabra in input_file:
+        model.addPalabra(catalog, palabra,'a')
 
-def loadVideos(catalog):
-    videosfile = cf.data_dir + 'videos-small.csv'
-    input_file = csv.DictReader(open(videosfile, encoding='utf-8'))
-    for video in input_file:
-        model.addVideo(catalog, video)
 
 def PalabraSize(catalog):
 
@@ -23,6 +24,4 @@ def PalabraSize(catalog):
 
 def loadData(catalog):
 
-    loadBooks(catalog)
-    loadTags(catalog)
-    loadBooksTags(catalog)
+    loadLetras(catalog)

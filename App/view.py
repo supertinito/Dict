@@ -34,12 +34,13 @@ while True:
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
         print("Inicializando Catálogo ....")
-        cont = controller.initCatalog()
+        catalog= initCatalog()
+        loadData(catalog)
 
     elif int(inputs[0]) == 2:
         print("Cargando información de los archivos ....")
         answer = controller.loadData(cont)
-        print('Palabras cargadas: ' + str(controller.PalabrasSize(cont))))
+        print('Palabras cargadas: ' + str(controller.PalabrasSize(cont)))
 
     else:
         sys.exit(0)

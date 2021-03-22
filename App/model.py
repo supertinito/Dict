@@ -29,22 +29,44 @@ def newCatalog():
     catalog['Palabras'] = mp.newMap(100,
                                 maptype='PROBING',
                                 loadfactor=0.5,
-                                comparefunction=compareletra
+                                comparefunction=compareletra)
 
     return catalog
 
 
 # Construccion de modelos
-
+def addPalabra(catalog,palabra,letra):
+    palabras=catalog['Palabras']
+    print(palabra)
+    palabra_separada=palabra.split(',')
+    palabra_usar=palabra_separada[0]
+    new_palabra=new_palabra(palabra_usar)
+    existeletra= mp.contains(palabras, letra)
+    if existeletra:
+        entrada=mp.get(palabras, letra)
+        letra_list=me.getValue(entrada)
+        lt.addLast(letra, palabra)
+    else:
+        letra_list=new_letra(letra)
+        mp.put(palabras, letra, letra_list)
+        lt.addLast(letra, palabra)
 # Funciones para agregar informacion al catalogo
 
 # Funciones para creacion de datos
+def new_palabra(palabra):
+    palabra={'p_original':None,'p_mod':None,'len':0}
+    palabra['p_original'] = palabra
+    palabra['p_mod'] = palabra
+    palabra['len'] = len(palabra)
+    return palabra 
 
+def new_letra(letra):
 # Funciones de consulta
+    letra=lt.newList(datastructure='ARRAY_LIST')
+    return letra
+
 def PalabraSize(catalog):
-    """
-    Numero de tags en el catalogo
-    """
+
     return mp.size(catalog['Palabras'])
 # Funciones utilizadas para comparar elementos dentro de una lista
 def compareletra(name, letra):
