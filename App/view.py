@@ -5,13 +5,14 @@ import sys
 import controller
 from DISClib.ADT import list as lt
 assert cf
+from DISClib.ADT import map as mp
 
 
 
 def printMenu():
     print("Bienvenido")
     print("1- Cargar información en el catálogo")
-    print("2- ")
+    print("2- Palabras que siguen patron de listas")
 
 def initCatalog():
     """
@@ -26,6 +27,11 @@ def loadData(catalog):
     """
     controller.loadData(catalog)
 
+def print_palabras(lista):
+    for i in range(1,lt.size(lista_r)+1):
+        palabra=lt.getElement(lista_r,i)
+        print(palabra['p_original'])
+
 """
 Menu principal
 """
@@ -36,12 +42,11 @@ while True:
         print("Inicializando Catálogo ....")
         catalog= initCatalog()
         loadData(catalog)
-
     elif int(inputs[0]) == 2:
-        print("Cargando información de los archivos ....")
-        answer = controller.loadData(cont)
-        print('Palabras cargadas: ' + str(controller.PalabrasSize(cont)))
-
+        lista=list(input('Inserte la lista del patrón: ').split(","))
+        print("Buscando palabras ....")
+        respuesta=controller.palabras_en_lista(catalog,lista)
+        print_palabras(respuesta)
     else:
         sys.exit(0)
 sys.exit(0)
